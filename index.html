@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lector de Código QR / 2D</title>
+  <!-- Cargamos la librería para escanear QR -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    #reader {
+      width: 100%;
+      max-width: 400px;
+      margin: 20px auto;
+      border: 2px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Lector de Código QR / 2D</h2>
+  <div id="reader"></div>
+  <div id="result">Esperando escaneo...</div>
+
+  <script>
+    function onScanSuccess(decodedText, decodedResult) {
+      // Muestra el resultado en pantalla
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<strong>Código detectado:</strong> <br> ${decodedText}`;
+
+      // Si el texto detectado es una URL, crea un enlace clickeable
+      if (decodedText.startsWith('http://') || decodedText.startsWith('https://')) {
+        resultDiv.innerHTML += `<br><br><a href="${decodedText}" target="_blank">Abrir Enlace</a>`;
+      }
+    }
+
+    function onScanFailure(error) {
+      // Manejo de errores de lectura continua (opcional)
+    }
+
+    // Inicializa el escáner ajustando la cámara trasera por defecto
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+      "reader", 
+      { fps: 10, qrbox: { width: 250, height: 250 } },
+      /* verbose= */ false
+    );
+
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+  </script>
+
+</body>
+</html>
