@@ -66,3 +66,24 @@
 
 </body>
 </html>
+
+# 1. Crear e ingresar a la carpeta de tu proyecto
+mkdir mi-nuevo-proyecto
+cd mi-nuevo-proyecto
+
+# 2. Inicializar Git en la carpeta
+git init
+git branch -M main
+
+# 3. Crear tu primer archivo (o copia aquí tus archivos Code.gs e Index.html)
+echo "# Mi Nuevo Proyecto" > README.md
+
+# 4. Preparar y guardar los cambios
+git add .
+git commit -m "Primer commit: inicio del proyecto"
+
+# 5. Enlazar con tu repositorio remoto de GitHub (reemplaza con tu URL real)
+git remote add origin https://github.com/ronmel200109-boop/NOMBRE-DE-TU-REPO.git
+
+# 6. Subir los archivos a GitHub
+git push -u origin main
